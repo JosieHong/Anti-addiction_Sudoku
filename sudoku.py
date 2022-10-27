@@ -1,10 +1,10 @@
 '''
 Date: 2022-10-26 15:09:29
 LastEditors: yuhhong
-LastEditTime: 2022-10-26 17:42:08
+LastEditTime: 2022-10-26 23:36:52
 '''
 import sys
-sys.setrecursionlimit(2000)
+sys.setrecursionlimit(5000)
 
 class Sudoku: 
 
@@ -32,6 +32,10 @@ class Sudoku:
         if len(self.board) == 0: # make sure the board is not empty
             raise ValueError('Empty board!')
         
+        self.potential_values = self._init_potential_values(self.board)
+        self.track_indexes = {k:-1 for k in self.blank_idx}
+        # print(self.potential_values, self.track_indexes)
+
     # -------------------------------------
     # External functions
     # -------------------------------------
@@ -53,17 +57,66 @@ class Sudoku:
     # -------------------------------------
     # Internal functions
     # -------------------------------------
+    
+    def _init_potential_values(self, board):
+        values = {}
+        for i in self.blank_idx:
+            values[i] = set([*range(1, self.sq_len+1)])
+
+        # look in row
+        for i in range(self.sq_len):
+            item_list = [int(board[int(i*self.sq_len+j)]) for j in range(self.sq_len) if board[int(i*self.sq_len+j)] != '-']
+            item_set = set(item_list)
+            # remove exsist values in potential values
+            for k, v in values.items():
+                if k in [int(i*self.sq_len+j) for j in range(self.sq_len)]:
+                    values[k] = v - item_set
+
+        # look in column
+        for i in range(self.sq_len):
+            item_list = [int(board[int(j*self.sq_len+i)]) for j in range(self.sq_len) if board[int(j*self.sq_len+i)] != '-']
+            item_set = set(item_list)
+            # remove exsist values in potential values
+            for k, v in values.items():
+                if k in [int(j*self.sq_len+i) for j in range(self.sq_len)]:
+                    values[k] = v - item_set
+
+        # look in square
+        for i in range(self.sq_len):
+            item_list = []
+            idx_list = []
+            for j in range(self.sub_sq_len): 
+                start_idx = (i // self.sub_sq_len) * self.sq_len * self.sub_sq_len + (i % self.sub_sq_len) * self.sub_sq_len + j * self.sq_len
+                sub_item_list = board[start_idx: start_idx+self.sub_sq_len]
+                idx_list.append([*range(start_idx,start_idx+self.sub_sq_len)])
+                for item in sub_item_list:
+                    if item != '-':
+                        item_list.append(int(item))
+
+            item_set = set(item_list)
+            # remove exsist values in potential values
+            for k, v in values.items():
+                if k in idx_list:
+                    values[k] = v - item_set
+        
+        for k, v in values.items(): 
+            values[k] = list(v)
+        return values
 
     def _fill_board(self, board, i): 
         if i == len(self.blank_idx): # complete!
             return board
         pos = self.blank_idx[i]
 
+        # print(pos, board[pos], self.track_indexes[pos], self.potential_values[pos])
         if board[pos] == '-':
-            board[pos] = 1
-        elif int(board[pos]) < 9:
-            board[pos] = int(board[pos]) + 1
-        else:
+            self.track_indexes[pos] = 0
+            board[pos] = self.potential_values[pos][self.track_indexes[pos]]
+        elif self.track_indexes[pos] < len(self.potential_values[pos]) - 1: 
+            self.track_indexes[pos] += 1
+            board[pos] = self.potential_values[pos][self.track_indexes[pos]]
+        else: 
+            self.track_indexes[pos] = -1
             board[pos] = '-'
             return self._fill_board(board, i-1)
 

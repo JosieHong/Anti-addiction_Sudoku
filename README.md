@@ -1,49 +1,49 @@
 <!--
  * @Date: 2022-10-26 15:11:27
  * @LastEditors: yuhhong
- * @LastEditTime: 2022-10-26 17:52:31
+ * @LastEditTime: 2022-10-26 23:37:16
 -->
 # Sudoku Solvers and Generator
 
-This is a Python implement of a Sudoku solver and generator. Hopefully, these codes will also solve my addiction to Sudoku. 
+This is a Python implementation of a Sudoku solver and generator. So far the "hard" puzzles can be solved. Hopefully, these codes will also solve my addiction to Sudoku. 
 
 ## Running Example
 
 ```python
 >>> from sudoku import Sudoku
->>> example = Sudoku(path='./puzzle010.txt')
+>>> example = Sudoku(path='./hard_001.txt')
 Init the Sudoku board from the file: ./puzzle010.txt
 >>> example.show_board()
 >>>
-|4,-,-,8,9,3,2,-,-|
-|-,2,-,1,-,4,-,3,-|
-|-,9,-,-,2,6,4,-,5|
-|-,-,8,-,-,9,-,5,4|
-|-,-,-,3,-,1,7,2,8|
-|3,7,-,-,-,5,1,-,-|
-|-,3,9,-,-,-,-,1,7|
-|-,8,6,-,-,-,-,-,-|
-|-,-,1,-,-,-,9,-,2|
+|-,3,-,8,7,-,-,-,-|
+|8,-,-,-,-,4,-,9,-|
+|-,-,4,-,6,-,-,1,-|
+|-,-,-,4,5,-,-,2,7|
+|-,1,-,7,-,-,-,4,6|
+|-,-,3,6,-,-,-,-,-|
+|9,-,-,-,-,-,-,-,2|
+|-,4,-,-,1,-,-,-,-|
+|-,-,1,-,-,5,-,-,-|
 >>> example.solve()
 Solving the Sudoku...
 Done!
 >>> example.show_board()
 >>>
-|4,6,5,8,9,3,2,7,1|
-|8,2,7,1,5,4,6,3,9|
-|1,9,3,7,2,6,4,8,5|
-|6,1,8,2,7,9,3,5,4|
-|9,5,4,3,6,1,7,2,8|
-|3,7,2,4,8,5,1,9,6|
-|5,3,9,6,4,2,8,1,7|
-|2,8,6,9,1,7,5,4,3|
-|7,4,1,5,3,8,9,6,2|
+|1,3,2,8,7,9,4,6,5|
+|8,5,6,1,2,4,7,9,3|
+|7,9,4,5,6,3,2,1,8|
+|6,8,9,4,5,1,3,2,7|
+|2,1,5,7,3,8,9,4,6|
+|4,7,3,6,9,2,5,8,1|
+|9,6,8,3,4,7,1,5,2|
+|5,4,7,2,1,6,8,3,9|
+|3,2,1,9,8,5,6,7,4|
 ```
 
 TODO: 
 
-- [x] Solving the Soduku from a file using backtracking algorithm;
-- [ ] Solving the Soduku from a file using constraint programming (as Constraint Satisfaction Problem);
+- [x] Solving the Soduku from a file using backtracking algorithm; 
+- [ ] Solving the Soduku from a file using constraint propagation (as Constraint Satisfaction Problem); 
 - [ ] Generating the Sudoku;
 
 ## Reference
