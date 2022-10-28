@@ -1,7 +1,7 @@
 <!--
  * @Date: 2022-10-26 15:11:27
  * @LastEditors: yuhhong
- * @LastEditTime: 2022-10-27 22:49:07
+ * @LastEditTime: 2022-10-27 22:51:25
 -->
 # Sudoku Solvers and Generator
 
@@ -46,7 +46,7 @@ TODO:
 
 - [x] Solving the Soduku from a file using backtracking algorithm; 
 - [x] Solving the Soduku from a file using constraint propagation (as Constraint Satisfaction Problem); 
-- [x] Modify the algorithm to solve "grandmaster" leveled puzzles; 
+- [ ] Modify the algorithm to solve "grandmaster" leveled puzzles; 
 - [ ] Generating the Sudoku;
 
 ## Reference
