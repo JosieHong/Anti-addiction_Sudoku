@@ -1,10 +1,10 @@
 '''
 Date: 2022-10-26 15:09:29
 LastEditors: yuhhong
-LastEditTime: 2022-10-27 22:42:53
+LastEditTime: 2022-10-28 00:03:08
 '''
 import sys
-sys.setrecursionlimit(5000)
+sys.setrecursionlimit(10000)
 
 class Sudoku: 
 
@@ -50,6 +50,7 @@ class Sudoku:
         for i in range(self.sq_len):
             print('|{}|'.format(','.join(list_board[int(i*self.sq_len): int((i+1)*self.sq_len)])))
         # print('blank indexes: {}'.format(self.blank_idx))
+        print()
 
     def solve(self):
         print('Solving the Sudoku...')
@@ -69,9 +70,10 @@ class Sudoku:
                     agenda_len += len(related_arc)
                     # print('Add {} arcs'.format(len(related_arc)))
             i += 1
-        # print(self.potential_values)
+        print('All potential values for empty positions:\n', self.potential_values)
 
         # backtracking
+        print('Let\'s get one possible solution...')
         self.board = self._fill_board(self.board, 0)
         print('Done!')
 

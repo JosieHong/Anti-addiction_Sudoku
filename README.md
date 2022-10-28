@@ -1,13 +1,15 @@
 <!--
  * @Date: 2022-10-26 15:11:27
  * @LastEditors: yuhhong
- * @LastEditTime: 2022-10-27 22:51:25
+ * @LastEditTime: 2022-10-28 00:15:31
 -->
-# Sudoku Solvers and Generator
+# Solve All the Sudoku, Leave No Puzzle for Fun
 
-This is a Python implementation of a Sudoku solver and generator. So far the "hard" and "master" leveled puzzles can be solved. Hopefully, these codes will also solve my addiction to Sudoku. 
+This is a Python implementation of a Sudoku solver and generator. 
 
+So far the "hard" and "master" leveled puzzles can be solved. Hopefully, these codes will also solve my addiction to Sudoku. 
 
+If you have a friend addicted to Sudoku, please share these codes to them. :)
 
 ## Running Example
 
