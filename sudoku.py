@@ -1,10 +1,10 @@
 '''
 Date: 2022-10-26 15:09:29
 LastEditors: yuhhong
-LastEditTime: 2022-10-28 00:03:08
+LastEditTime: 2022-10-28 14:32:37
 '''
 import sys
-sys.setrecursionlimit(10000)
+sys.setrecursionlimit(15000)
 
 class Sudoku: 
 
@@ -50,7 +50,7 @@ class Sudoku:
         for i in range(self.sq_len):
             print('|{}|'.format(','.join(list_board[int(i*self.sq_len): int((i+1)*self.sq_len)])))
         # print('blank indexes: {}'.format(self.blank_idx))
-        print()
+        print('>>>')
 
     def solve(self):
         print('Solving the Sudoku...')
@@ -97,7 +97,7 @@ class Sudoku:
                     if k in indexes: 
                         values[k] = v - item_set
 
-        # convert potential values' list to set
+        # convert potential values' set to list
         for k, v in values.items(): 
             values[k] = list(v)
         return values
@@ -138,6 +138,13 @@ class Sudoku:
             if self._fill_related_indexes(new_board, check_type, related_idx, 0, track={k:-1 for k in related_idx}): 
                 new_potential_values.append(v)
 
+        # if there is only one potential value, it can be fixed
+        if len(new_potential_values) == 1:
+            self.board[idx] = new_potential_values[0]
+            self.blank_idx = [jdx for jdx in self.blank_idx if jdx != idx]
+            # print('Fix {} as {}'.format(idx, self.board[idx]))
+            # print('# Blank indexes:', len(self.blank_idx))
+
         # if potential values of idx are updated, the agenda need to be updated too
         if new_potential_values != self.potential_values[idx]:
             # print('Change ->', self.potential_values[idx], new_potential_values)
@@ -156,9 +163,6 @@ class Sudoku:
             return True
         
         pos = related_idx[i]
-        if pos not in self.blank_idx: 
-            # print('already filled ({}, {}, {})'.format(i, pos, board[pos]))
-            return self._fill_related_indexes(board, check_type, related_idx, i+1, track)
         if track[pos] < len(self.potential_values[pos]) - 1:
             track[pos] += 1
             board[pos] = self.potential_values[pos][track[pos]]
@@ -212,24 +216,23 @@ class Sudoku:
                 item_list = [int(board[idx]) for idx in self._row_indexes(i) if board[idx] != '-']
                 item_set = set(item_list)
                 if len(item_set) != len(item_list):
-                    # print('ROW/COL/BLOCK({}): {}, {}'.format(indexes, item_list, item_set))
+                    # print('ROW({}): {}, {}'.format(indexes, item_list, item_set))
                     return False
         elif check_type == 'col':
             for i in range(self.sq_len): 
                 item_list = [int(board[idx]) for idx in self._col_indexes(i) if board[idx] != '-']
                 item_set = set(item_list)
                 if len(item_set) != len(item_list):
-                    # print('ROW/COL/BLOCK({}): {}, {}'.format(indexes, item_list, item_set))
+                    # print('COL({}): {}, {}'.format(indexes, item_list, item_set))
                     return False
         elif check_type == 'block': 
             for i in range(self.sq_len):  
                 item_list = [int(board[idx]) for idx in self._block_indexes(i) if board[idx] != '-']
                 item_set = set(item_list)
                 if len(item_set) != len(item_list):
-                    # print('ROW/COL/BLOCK({}): {}, {}'.format(indexes, item_list, item_set))
+                    # print('BLOCK({}): {}, {}'.format(indexes, item_list, item_set))
                     return False
-        else: 
-            # check row, column, and block
+        else: # check row, column, and block
             for i in range(self.sq_len):
                 for indexes in [self._row_indexes(i), self._col_indexes(i), self._block_indexes(i)]: 
                     item_list = [int(board[idx]) for idx in indexes if board[idx] != '-']

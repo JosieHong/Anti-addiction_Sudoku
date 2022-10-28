@@ -1,9 +1,9 @@
 <!--
  * @Date: 2022-10-26 15:11:27
  * @LastEditors: yuhhong
- * @LastEditTime: 2022-10-28 00:15:31
+ * @LastEditTime: 2022-10-28 13:53:19
 -->
-# Solve All the Sudoku, Leave No Puzzle for Fun
+# Solve All the Sudoku, Leave No Joy for Solving by Yourself
 
 This is a Python implementation of a Sudoku solver and generator. 
 
