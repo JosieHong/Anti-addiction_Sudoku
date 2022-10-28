@@ -1,11 +1,13 @@
 <!--
  * @Date: 2022-10-26 15:11:27
  * @LastEditors: yuhhong
- * @LastEditTime: 2022-10-26 23:37:16
+ * @LastEditTime: 2022-10-27 22:49:07
 -->
 # Sudoku Solvers and Generator
 
-This is a Python implementation of a Sudoku solver and generator. So far the "hard" puzzles can be solved. Hopefully, these codes will also solve my addiction to Sudoku. 
+This is a Python implementation of a Sudoku solver and generator. So far the "hard" and "master" leveled puzzles can be solved. Hopefully, these codes will also solve my addiction to Sudoku. 
+
+
 
 ## Running Example
 
@@ -43,7 +45,8 @@ Done!
 TODO: 
 
 - [x] Solving the Soduku from a file using backtracking algorithm; 
-- [ ] Solving the Soduku from a file using constraint propagation (as Constraint Satisfaction Problem); 
+- [x] Solving the Soduku from a file using constraint propagation (as Constraint Satisfaction Problem); 
+- [x] Modify the algorithm to solve "grandmaster" leveled puzzles; 
 - [ ] Generating the Sudoku;
 
 ## Reference
