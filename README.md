@@ -14,7 +14,7 @@ If you have a friend addicted to Sudoku, please share these codes to them. :)
 ## Running Example
 
 ```python
->>> from sudoku import Sudoku
+>>> from sudoku_super import Sudoku
 >>> example = Sudoku(path='./hard_001.txt')
 Init the Sudoku board from the file: ./puzzle010.txt
 >>> example.show_board()
@@ -50,6 +50,7 @@ TODO:
 - [x] Solving the Soduku from a file using constraint propagation (as Constraint Satisfaction Problem); 
 - [ ] Modify the algorithm to solve "grandmaster" leveled puzzles; 
 - [ ] Generating the Sudoku;
+- [ ] Implement basic techniques (simulate human actions);
 
 ## Reference
 
